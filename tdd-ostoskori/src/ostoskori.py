@@ -19,6 +19,8 @@ class Ostoskori:
             self._ostokset[lisattava].muuta_lukumaaraa(1)
 
     def poista_tuote(self, poistettava: Tuote):
+        if poistettava in self._ostokset:
+            self._ostokset[poistettava].muuta_lukumaaraa(-1)
         # poistaa tuotteen
         pass
 
