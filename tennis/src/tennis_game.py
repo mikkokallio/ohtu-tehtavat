@@ -12,11 +12,12 @@ class TennisGame:
 
     def get_score(self):
         a, b = [self.scores[player] for player in self.scores]
+        difference = min(abs(a-b), 2)
+        leading_player = "" if a==b else max(self.scores, key=self.scores.get)
+
         if max(a, b) > 3:
-            leading_player = "" if a==b else max(self.scores, key=self.scores.get)
-            difference = min(abs(a-b), 2)
             return f"{RELATIVE_SCORES[difference]}{leading_player}"
-        elif a == b:
+        elif difference == 0:
             return f"{INDIVIDUAL_SCORES[a]}-All"
         else:
             return f"{INDIVIDUAL_SCORES[a]}-{INDIVIDUAL_SCORES[b]}"
