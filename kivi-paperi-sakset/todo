@@ -1,0 +1,20 @@
+
+
+
+
+
+
+
+
+
+
+
+
+Koodi sisältää runsaat määrät copy pastea, 
+muutenkaan oliosuunnittelun periaatteet eivät ole vielä alkuperäisellä ohjelmoijalla olleet hallussa
+Poista koodista kaikki toisteisuus ja tee siitä rakenteellisesti materiaalin osan 4 hengessä oikeaoppinen
+
+
+Sopivan peliolion (kaksinpeli, helppo yksinpeli, vaikea yksinpeli) luominen tulee toteuttaa staattisen tehdasmetodin, tai funktion avulla
+Pääohjelmalla ei saa olla riippuvuuksia konkreettisiin pelin toteuttaviin luokkiin
+Jos teet tehtävän mielestäsi kaikkien tyylisääntöjen mukaan, merkkaa 2 rastia, jos ratkaisu ei ole kaikin osin tyylikäs, merkkaa yksi rasti.
