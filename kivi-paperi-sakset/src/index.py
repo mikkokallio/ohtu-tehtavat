@@ -1,43 +1,27 @@
-from kps_pelaaja_vs_pelaaja import KPSPelaajaVsPelaaja
-from kps_tekoaly import KPSTekoaly
-from kps_parempi_tekoaly import KPSParempiTekoaly
+from kps import KPS
 
+pelit = {
+    'a': {'kuvaus': 'Ihmistä vastaan', 'peli': KPS.luo_ihmisten_peli},
+    'b': {'kuvaus': 'Tekoälyä vastaan', 'peli': KPS.luo_peli_tekoalya_vastaan},
+    'c': {'kuvaus': 'Parannettua tekoälyä vastaan', 'peli': KPS.luo_peli_parempaa_tekoalya_vastaan},
+}
 
 def main():
     while True:
-        print("Valitse pelataanko"
-              "\n (a) Ihmistä vastaan"
-              "\n (b) Tekoälyä vastaan"
-              "\n (c) Parannettua tekoälyä vastaan"
-              "\nMuilla valinnoilla lopetetaan"
-              )
+        print("Valitse pelataanko")
+        [print(f" ({peli}) {pelit[peli]['kuvaus']}") for peli in pelit]
+        print("Muilla valinnoilla lopetetaan")
 
         vastaus = input()
-
-        if vastaus.endswith("a"):
+        
+        if len(vastaus) > 0 and vastaus[-1] in pelit:
             print(
                 "Peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s"
             )
-
-            kaksinpeli = KPSPelaajaVsPelaaja()
-            kaksinpeli.pelaa()
-        elif vastaus.endswith("b"):
-            print(
-                "Peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s"
-            )
-
-            yksinpeli = KPSTekoaly()
-            yksinpeli.pelaa()
-        elif vastaus.endswith("c"):
-            print(
-                "Peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s"
-            )
-
-            haastava_yksinpeli = KPSParempiTekoaly()
-            haastava_yksinpeli.pelaa()
+            peli = pelit[vastaus[-1]]['peli']()
+            peli.pelaa()
         else:
-            break
-
+            break 
 
 if __name__ == "__main__":
     main()

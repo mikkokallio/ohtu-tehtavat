@@ -1,9 +1,23 @@
 from tuomari import Tuomari
+from tekoaly import Tekoaly
+from tekoaly_parannettu import TekoalyParannettu
 
 
 class KPS:
     def __init__(self) -> None:
         self._tuomari = Tuomari()
+    
+    @staticmethod
+    def luo_ihmisten_peli():
+        return KPSPelaajaVsPelaaja()
+
+    @staticmethod
+    def luo_peli_tekoalya_vastaan():
+        return KPSTekoaly()
+
+    @staticmethod
+    def luo_peli_parempaa_tekoalya_vastaan():
+        return KPSParempiTekoaly()
 
     def pelaa(self):
         while True:
@@ -29,3 +43,34 @@ class KPS:
 
     def _onko_ok_siirto(self, siirto):
         return siirto == "k" or siirto == "p" or siirto == "s"
+
+
+class KPSPelaajaVsPelaaja(KPS):
+    def __init__(self) -> None:
+        super().__init__()
+
+    def _toisen_siirto(self, ekan_siirto):
+        return input("Toisen pelaajan siirto: ")
+
+
+class KPSTekoaly(KPS):
+    def __init__(self) -> None:
+        super().__init__()
+        self._tekoaly = Tekoaly()
+
+    def _toisen_siirto(self, ekan_siirto):
+        tokan_siirto = self._tekoaly.anna_siirto()
+        print(f"Tietokone valitsi: {tokan_siirto}")
+        return tokan_siirto
+
+
+class KPSParempiTekoaly(KPS):
+    def __init__(self) -> None:
+        super().__init__()
+        self._tekoaly = TekoalyParannettu(10)
+
+    def _toisen_siirto(self, ekan_siirto):
+        tokan_siirto = self._tekoaly.anna_siirto()
+        print(f"Tietokone valitsi: {tokan_siirto}")
+        self._tekoaly.aseta_siirto(ekan_siirto)
+        return tokan_siirto
